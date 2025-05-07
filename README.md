@@ -47,8 +47,7 @@ suffix. For parsing Number it expects a String number, a String prefix  and a St
 supplied by LatexParseManager. This class is the bridge among the mathematical objects the LatexParser.
 
 A big selling point is, that you can combine the mathematical objects however you like. A Fraction consists of 
-Expressions, so does a Polynom. Yet the LatexParseManager can parse it correctly offering a lot
-of flexibility
+Expressions, so does a Polynom. Yet the LatexParseManager can parse it correctly offering a lot of flexibility.
 
 [expr]: src/values/Expression.java
 [expr_mod]: src/values/ExpressionModifier.java
