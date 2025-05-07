@@ -1,7 +1,8 @@
+import latex.LatexParseManager;
 import values.*;
 import values.Number;
 
-public class Test {
+public class TestClass {
     static final LatexParseManager LPM = new LatexParseManager("src/tmp");
 
     public static void main(String[] args) {

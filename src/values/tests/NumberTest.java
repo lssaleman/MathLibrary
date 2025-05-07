@@ -1,4 +1,4 @@
-package values.test;
+package values.tests;
 
 import values.Expression;
 import values.Fraction;

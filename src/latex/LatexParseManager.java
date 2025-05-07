@@ -1,3 +1,5 @@
+package latex;
+
 import values.*;
 import values.Number;
 

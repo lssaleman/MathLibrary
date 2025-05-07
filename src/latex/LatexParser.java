@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package latex;
 
 public class LatexParser {
     public static String parseNumber(String number, String prefix, String suffix) {
