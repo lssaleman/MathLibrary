@@ -1,7 +1,7 @@
 package latex;
 
-import values.*;
-import values.Number;
+import expressions.*;
+import expressions.Number;
 
 import java.io.File;
 import java.io.PrintStream;

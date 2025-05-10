@@ -1,4 +1,4 @@
-package values;
+package expressions;
 
 import java.util.ArrayList;
 
@@ -22,26 +22,6 @@ public class Value extends ExpressionModifier implements Expression {
     @Override
     public boolean isPositive() {
         return false;
-    }
-
-    @Override
-    public Expression add(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression sub(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression mul(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression div(Expression v) {
-        return null;
     }
 
     @Override

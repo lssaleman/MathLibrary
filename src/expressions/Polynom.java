@@ -1,4 +1,4 @@
-package values;
+package expressions;
 
 public class Polynom extends ExpressionModifier implements Expression {
 
@@ -48,22 +48,22 @@ public class Polynom extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public Expression add(Expression v) {
+    public Expression add(Expression e) {
         return null;
     }
 
     @Override
-    public Expression sub(Expression v) {
+    public Expression sub(Expression e) {
         return null;
     }
 
     @Override
-    public Expression mul(Expression v) {
+    public Expression mul(Expression e) {
         return null;
     }
 
     @Override
-    public Expression div(Expression v) {
+    public Expression div(Expression e) {
         return null;
     }
 

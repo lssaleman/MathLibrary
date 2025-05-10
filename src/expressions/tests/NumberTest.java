@@ -1,13 +1,16 @@
-package values.tests;
+package expressions.tests;
 
-import values.Expression;
-import values.Fraction;
-import values.Number;
+import expressions.Expression;
+import expressions.Fraction;
+import expressions.Number;
 
 import java.util.Random;
 
 public class NumberTest {
     public static final int GENERAL_TEST_AMOUNT = 30;
+    private static String errorMessage = "";
+
+
     public static void main(String[] args) {
         startNumberTesting();
     }
@@ -15,26 +18,31 @@ public class NumberTest {
     public static void startNumberTesting() {
         if (!initTest()) {
             System.out.println("Error: NUMBER_INIT");
+            System.out.println(errorMessage);
         } else {
             System.out.println("Passed: NUMBER_INIT");
         }
         if(!numberAdditionTest()) {
             System.out.println("Error: NUMBER_ADDITION");
+            System.out.println(errorMessage);
         } else {
             System.out.println("Passed: NUMBER_ADDITION");
         }
         if (!numberSubtractionTest()) {
             System.out.println("Error: NUMBER_SUBTRACTION");
+            System.out.println(errorMessage);
         } else {
         System.out.println("Passed: NUMBER_SUBTRACTION");
         }
         if (!numberMultiplicationTest()) {
             System.out.println("Error: NUMBER_MULTIPLICATION");
+            System.out.println(errorMessage);
         } else {
             System.out.println("Passed: NUMBER_MULTIPLICATION");
         }
         if (!numberDivisionTest()) {
             System.out.println("Error: NUMBER_DIVISION");
+            System.out.println(errorMessage);
         } else {
             System.out.println("Passed: NUMBER_DIVISION");
         }
@@ -57,7 +65,7 @@ public class NumberTest {
     public static boolean initTestHelp(int testValue) {
         Number number = new Number(testValue);
         if (number.getValue() != testValue) {
-            System.out.println("Error: Value should be " + testValue + ". Observed " + number.getValue());
+            errorMessage = "Error: Value should be " + testValue + ". Observed " + number.getValue();
             return false;
         }
         return true;
@@ -84,11 +92,11 @@ public class NumberTest {
         Number n2 = new Number(y);
         Number result = (Number) n1.add(n2);
         if (n1 == result || n2 == result) {
-            System.out.println("Error: Operation did not create a new Number Object");
+            errorMessage = "Error: Operation did not create a new Number Object";
             return false;
         }
         if (result.getValue() != x + y) {
-            System.out.println("Error: Value should be " + (x + y) + ". Observed " + result.getValue());
+            errorMessage = "Error: Value should be " + (x + y) + ". Observed " + result.getValue();
             return false;
         }
         return true;
@@ -116,11 +124,11 @@ public class NumberTest {
         Number result = (Number) n1.sub(n2);
 
         if (n1 == result || n2 == result) {
-            System.out.println("Error: Operation did not create a new Number Object");
+            errorMessage = "Error: Operation did not create a new Number Object";
             return false;
         }
         if (result.getValue() != x - y) {
-            System.out.println("Error: Value should be " + (x - y) + ". Observed " + result.getValue());
+            errorMessage = "Error: Value should be " + (x - y) + ". Observed " + result.getValue();
             return false;
         }
         return true;
@@ -148,11 +156,11 @@ public class NumberTest {
         Number result = (Number) n1.mul(n2);
 
         if (n1 == result || n2 == result) {
-            System.out.println("Error: Operation did not create a new Number Object");
+            errorMessage = "Error: Operation did not create a new Number Object";
             return false;
         }
         if (result.getValue() != x * y) {
-            System.out.println("Error: Value should be " + (x * y) + ". Observed " + result.getValue());
+            errorMessage = "Error: Value should be " + (x * y) + ". Observed " + result.getValue();
             return false;
         }
         return true;
@@ -179,12 +187,12 @@ public class NumberTest {
         Expression unknownResult =  n1.div(n2);
 
         if (n1 == unknownResult || n2 == unknownResult) {
-            System.out.println("Error: Operation did not create a new Number Object");
+            errorMessage = "Error: Operation did not create a new Number Object";
             return false;
         }
 
         if (x % y != 0 && !(unknownResult instanceof Fraction)) {
-            System.out.println("Error: Operation should have returned a Fraction but returned a Number instead");
+            errorMessage = "Error: Operation should have returned a Fraction but returned a Number instead";
             return false;
         }
 
@@ -195,20 +203,20 @@ public class NumberTest {
             }
 
             if (!(f.getNumerator() instanceof Number)) {
-                System.out.println("Error: Numerator has not been successfully created as a type Number");
+                errorMessage = "Error: Numerator has not been successfully created as a type Number";
                 return false;
             }
 
             if (!(f.getDenominator() instanceof Number)) {
-                System.out.println("Error: Denominator has not been successfully created as a type Number");
+                errorMessage = "Error: Denominator has not been successfully created as a type Number";
                 return false;
             }
 
             int x2 = ((Number) f.getNumerator()).getValue();
             int y2 = ((Number) f.getDenominator()).getValue();
             if (x != x2 || y != y2) {
-                System.out.println("Error: From operation created Fraction has wrong values. Expected: " + x +"/" +
-                        y + " observed: " + x2 + "/" + y2 + ".");
+                errorMessage = "Error: From operation created Fraction has wrong values. Expected: " + x +"/" +
+                        y + " observed: " + x2 + "/" + y2 + ".";
                 return false;
             }
             return true;
@@ -216,7 +224,7 @@ public class NumberTest {
 
         Number result = (Number) unknownResult;
         if (result.getValue() != x / y) {
-            System.out.println("Error: Value should be " + (x / y) + ". Observed " + result.getValue());
+            errorMessage = "Error: Value should be " + (x / y) + ". Observed " + result.getValue();
             return false;
         }
         return true;

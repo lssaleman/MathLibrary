@@ -1,4 +1,4 @@
-package values;
+package expressions;
 
 public class Fraction extends ExpressionModifier implements Expression {
     private Expression numerator;
@@ -7,6 +7,12 @@ public class Fraction extends ExpressionModifier implements Expression {
     public Fraction(Expression numerator, Expression denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
+        makeDenominatorPositive();
+    }
+
+    public Fraction(int numerator, int denominator) {
+        this.numerator = new Number(numerator);
+        this.denominator = new Number(denominator);
         makeDenominatorPositive();
     }
 
@@ -26,16 +32,16 @@ public class Fraction extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public Expression add(Expression v) {
-        if (v instanceof Number n) {
+    public Expression add(Expression e) {
+        if (e instanceof Number n) {
             return n.add(this);
         }
         return null;
     }
 
     @Override
-    public Expression sub(Expression v) {
-        if (v instanceof Number n) {
+    public Expression sub(Expression e) {
+        if (e instanceof Number n) {
             Expression tmp = n.mul(this.getDenominator());
             return new Fraction (this.getNumerator().sub(tmp), this.getDenominator());
         }
@@ -43,16 +49,16 @@ public class Fraction extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public Expression mul(Expression v) {
-        if (v instanceof Number n) {
+    public Expression mul(Expression e) {
+        if (e instanceof Number n) {
             return n.mul(this);
         }
         return null;
     }
 
     @Override
-    public Expression div(Expression v) {
-        if (v instanceof Number n) {
+    public Expression div(Expression e) {
+        if (e instanceof Number n) {
             return n.div(this);
         }
         return null;

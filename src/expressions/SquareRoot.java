@@ -1,4 +1,4 @@
-package values;
+package expressions;
 
 public class SquareRoot extends ExpressionModifier implements Expression {
 
@@ -6,6 +6,10 @@ public class SquareRoot extends ExpressionModifier implements Expression {
 
     public SquareRoot(Expression v) {
         this.value = v;
+    }
+
+    public SquareRoot(int value) {
+        this.value = new Number(value);
     }
 
     @Override
@@ -23,25 +27,6 @@ public class SquareRoot extends ExpressionModifier implements Expression {
         return true;
     }
 
-    @Override
-    public Expression add(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression sub(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression mul(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression div(Expression v) {
-        return null;
-    }
 
     @Override
     public void optimize() {

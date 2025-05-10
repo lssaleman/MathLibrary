@@ -1,6 +1,6 @@
 import latex.LatexParseManager;
-import values.*;
-import values.Number;
+import expressions.*;
+import expressions.Number;
 
 public class TestClass {
     static final LatexParseManager LPM = new LatexParseManager("src/tmp");

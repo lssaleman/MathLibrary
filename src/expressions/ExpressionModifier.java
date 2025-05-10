@@ -1,4 +1,6 @@
-package values;
+package expressions;
+
+import math.calculators.Control;
 
 public class ExpressionModifier implements Expression{
     private String prefix = "";
@@ -20,23 +22,24 @@ public class ExpressionModifier implements Expression{
     }
 
     @Override
-    public Expression add(Expression v) {
-        return null;
+    public Expression add(Expression e) {
+        return Control.add(this, e);
     }
 
     @Override
-    public Expression sub(Expression v) {
-        return null;
+    public Expression sub(Expression e) {
+        return Control.sub(this, e);
+    }
+
+
+    @Override
+    public Expression mul(Expression e) {
+        return Control.mul(this, e);
     }
 
     @Override
-    public Expression mul(Expression v) {
-        return null;
-    }
-
-    @Override
-    public Expression div(Expression v) {
-        return null;
+    public Expression div(Expression e) {
+        return Control.div(this, e);
     }
 
     @Override
