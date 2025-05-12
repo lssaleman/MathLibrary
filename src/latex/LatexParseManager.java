@@ -19,8 +19,12 @@ public class LatexParseManager {
         }
     }
 
-    public void parseIntoFile(Expression value) {
-        output.print(rekursiveGeneration(value));
+    public void parseIntoFile(Expression expression) {
+        output.print(rekursiveGeneration(expression));
+    }
+
+    public String praseString(Expression expression) {
+        return rekursiveGeneration(expression);
     }
 
     private String rekursiveGeneration(Expression value) {
