@@ -85,6 +85,13 @@ quite fit anymore.
 I almost forgot. I also started creating a class diagramm for the project using AstahUML. The reasoning for that was to
 make sure I encounter bad project structure as early as possible (thx Mr. Bruhns). I'll add it in a later push.
 
+**10.05.2025**:<br>
+Fraction and Number are fully compatible with each other now (technically). I have not written any tests yet. Fraction
+has received a new Method called "getReciprocal" as a quality of life. Of course this instantiates a new Fraction. I
+also added the method parseString to the LatexParseManager in addition to parseIntoFile. The latter method is kind of
+useless. 
+
+
 [expr]: src/expressions/Expression.java
 [expr_mod]: src/expressions/ExpressionModifier.java
 [numb]: src/expressions/Number.java
