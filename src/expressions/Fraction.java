@@ -31,38 +31,6 @@ public class Fraction extends ExpressionModifier implements Expression {
         return numerator.isPositive();
     }
 
-    @Override
-    public Expression add(Expression e) {
-        if (e instanceof Number n) {
-            return n.add(this);
-        }
-        return null;
-    }
-
-    @Override
-    public Expression sub(Expression e) {
-        if (e instanceof Number n) {
-            Expression tmp = n.mul(this.getDenominator());
-            return new Fraction (this.getNumerator().sub(tmp), this.getDenominator());
-        }
-        return null;
-    }
-
-    @Override
-    public Expression mul(Expression e) {
-        if (e instanceof Number n) {
-            return n.mul(this);
-        }
-        return null;
-    }
-
-    @Override
-    public Expression div(Expression e) {
-        if (e instanceof Number n) {
-            return n.div(this);
-        }
-        return null;
-    }
 
     @Override
     public void optimize() {
@@ -88,6 +56,10 @@ public class Fraction extends ExpressionModifier implements Expression {
 
     public Expression getDenominator() {
         return denominator;
+    }
+
+    public Fraction getReciprocal() {
+        return new Fraction(this.getDenominator(), this.getNumerator());
     }
 
 }

@@ -1,22 +1,30 @@
 import latex.LatexParseManager;
 import expressions.*;
-import expressions.Number;
+
+import java.io.File;
+import java.util.Scanner;
 
 public class TestClass {
     static final LatexParseManager LPM = new LatexParseManager("src/tmp");
 
     public static void main(String[] args) {
-        Number n1 = new Number(-4);
-        Number n2 = new Number(-3);
-        Number n3 = new Number(0);
-        Fraction f1 = new Fraction(n1, n2);
-        SquareRoot s1 = new SquareRoot(new Fraction(new Number(5), new Number(7)));
+        Fraction f =  new Fraction(3, 4);
+        Fraction n =  new Fraction(3, 5);
+        Expression e = n.sub(f);
+        LPM.parseIntoFile(e);
+        readTMP();
+    }
 
-        Expression[] values = new Expression[] {n1, n2, f1, n3, s1};
-        Polynom p = new Polynom(values);
 
-        p.setPrefix("-((");
-        p.setSuffix("))");
-        LPM.parseIntoFile(p);
+    public static void readTMP() {
+        File f = new File("src/tmp");
+        try {
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                System.out.println(s.nextLine());
+            }
+        } catch (Exception e) {
+            System.out.println("Problem beim Datei Lesen.");
+        }
     }
 }
