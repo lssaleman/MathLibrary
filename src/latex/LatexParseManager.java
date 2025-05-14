@@ -5,14 +5,14 @@ import expressions.Number;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 public class LatexParseManager {
-    File file;
-    PrintStream output;
+    private PrintStream output;
 
     public LatexParseManager(String path) {
         try {
-            file = new File(path);
+            File file = new File(path);
             output = new PrintStream(file);
         } catch(Exception e) {
             System.out.println(e);
@@ -23,7 +23,7 @@ public class LatexParseManager {
         output.print(rekursiveGeneration(expression));
     }
 
-    public String praseString(Expression expression) {
+    public String parseString(Expression expression) {
         return rekursiveGeneration(expression);
     }
 
@@ -54,6 +54,20 @@ public class LatexParseManager {
                 polynomValues[i] = rekursiveGeneration(values[i]);
             }
             result = LatexParser.parsePolynom(polynomValues, p.getPrefix(), p.getSuffix());
+        } else if (value instanceof Value v) {
+            StringBuilder sb = new StringBuilder();
+            ArrayList<Expression> values = v.getValues();
+            for (int i = 0; i < values.size(); i++) {
+                sb.append(rekursiveGeneration(values.get(i)));
+                if (i < values.size() - 1) {
+                    if (values.get(i + 1).isPositive()) {
+                        sb.append(" +");
+                    } else {
+                        sb.append(" ");
+                    }
+                }
+            }
+            result = sb.toString();
         }
         return result;
     }

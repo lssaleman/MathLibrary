@@ -1,18 +1,25 @@
+import expressions.Number;
 import latex.LatexParseManager;
 import expressions.*;
 
 import java.io.File;
+
 import java.util.Scanner;
 
 public class TestClass {
     static final LatexParseManager LPM = new LatexParseManager("src/tmp");
 
     public static void main(String[] args) {
-        Fraction f =  new Fraction(3, 4);
-        Fraction n =  new Fraction(3, 5);
-        Expression e = n.sub(f);
-        LPM.parseIntoFile(e);
-        readTMP();
+        Fraction f1 = new Fraction(1, 2);
+        Number n1 = new Number(-5);
+        Value v1 = new Value(f1);
+        System.out.println(LPM.parseString(v1));
+        v1 = (Value) v1.add(n1);
+        System.out.println(LPM.parseString(v1));
+        v1 = (Value) v1.mul(n1);
+        System.out.println(LPM.parseString(v1));
+        v1 = (Value) v1.add(new SquareRoot(5));
+        System.out.println(LPM.parseString(v1));
     }
 
 

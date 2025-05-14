@@ -91,6 +91,15 @@ has received a new Method called "getReciprocal" as a quality of life. Of course
 also added the method parseString to the LatexParseManager in addition to parseIntoFile. The latter method is kind of
 useless. 
 
+**14.05.2025**:<br>
+I continued working on the UML-Diagramm of this project. I also worked on the Value class. All four operations are now
+fully functional. However, I ran into some problems. How do I display multiplication without calculating it. Is it
+something this library should provide or not? Also, a SquareRoot can't have a minus sign in front of it or a direkt 
+Value. I will start adding toDos to GitHub now so I don't struggle deciding what I want to be working on. This 
+has happened today. The key focus for now should be to make all Expressions compatible with all other Expressions. 
+The SquareRoot problem also needs to be addressed soon. I'm still not fully happy with my projects Structure. The 
+connections among the different classes are too strong. They need to have too much information. 
+
 
 [expr]: src/expressions/Expression.java
 [expr_mod]: src/expressions/ExpressionModifier.java

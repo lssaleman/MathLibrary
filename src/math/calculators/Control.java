@@ -10,6 +10,8 @@ public class Control {
             return NumberCalculator.addNumber(n, second);
         } else if (first instanceof Fraction f) {
             return FractionCalculator.addFraction(f, second);
+        } else if (first instanceof Value v) {
+            return ValueCalculator.valueAdd(v, second);
         }
         return null;
     }
@@ -19,6 +21,8 @@ public class Control {
             return NumberCalculator.subNumber(n, second);
         } else if (first instanceof Fraction f) {
             return FractionCalculator.subFraction(f, second);
+        } else if (first instanceof Value v) {
+            return ValueCalculator.valueSub(v, second);
         }
         return null;
     }
@@ -28,6 +32,8 @@ public class Control {
             return NumberCalculator.mulNumber(n, second);
         } else if (first instanceof Fraction f) {
             return FractionCalculator.mulFraction(f, second);
+        } else if (first instanceof Value v) {
+            return ValueCalculator.valueMul(v, second);
         }
         return null;
     }
@@ -37,6 +43,8 @@ public class Control {
             return NumberCalculator.divNumber(n, second);
         } else if (first instanceof Fraction f) {
             return FractionCalculator.divFraction(f, second);
+        } else if (first instanceof Value v) {
+            return ValueCalculator.valueDiv(v, second);
         }
         return null;
     }

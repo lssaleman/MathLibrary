@@ -5,13 +5,21 @@ import java.util.ArrayList;
 public class Value extends ExpressionModifier implements Expression {
     ArrayList<Expression> values = new ArrayList<>();
 
-    public Value(Value v) {
+    public Value(Expression v) {
         values.add(v);
+    }
+
+    public Value(ArrayList<Expression> values) {
+        this.values = values;
     }
 
     @Override
     public String get() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        for (Expression expression: values) {
+            sb.append(expression.get());
+        }
+        return sb.toString();
     }
 
     @Override
@@ -32,5 +40,9 @@ public class Value extends ExpressionModifier implements Expression {
     @Override
     public void checkIntegrity() {
 
+    }
+
+    public ArrayList<Expression> getValues() {
+        return values;
     }
 }
