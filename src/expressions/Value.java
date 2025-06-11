@@ -45,4 +45,19 @@ public class Value extends ExpressionModifier implements Expression {
     public ArrayList<Expression> getValues() {
         return values;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder latexExpression = new StringBuilder();
+        boolean isFirstValue = true;
+        for (Expression expression : values) {
+                if (!isFirstValue) {
+                    latexExpression.append(expression.isPositive() ? " +" : " ");
+                } else {
+                    isFirstValue = false;
+                }
+            latexExpression.append(expression);
+        }
+        return latexExpression.toString();
+    }
 }

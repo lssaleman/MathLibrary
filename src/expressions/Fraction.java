@@ -42,6 +42,14 @@ public class Fraction extends ExpressionModifier implements Expression {
 
     }
 
+    @Override
+    public String toString() {
+        if (numerator.isPositive()) {
+            return "\\frac{" + numerator.toString() + "}{" + denominator.toString() + "}";
+        }
+        return "-\\frac{" + numerator.mul(new Number(-1)).toString() + "}{" + denominator.toString() + "}";
+    }
+
     private void makeDenominatorPositive() {
         if (!denominator.isPositive()) {
             Number tmp = new Number(-1);

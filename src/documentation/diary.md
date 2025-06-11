@@ -101,15 +101,15 @@ The SquareRoot problem also needs to be addressed soon. I'm still not fully happ
 connections among the different classes are too strong. They need to have too much information. 
 
 
-[expr]: src/expressions/Expression.java
-[expr_mod]: src/expressions/ExpressionModifier.java
-[numb]: src/expressions/Number.java
-[frac]: src/expressions/Fraction.java
-[squar]: src/expressions/SquareRoot.java
-[poly]: src/expressions/Polynom.java
-[value]: src/expressions/Value.java
+[expr]: ../expressions/Expression.java
+[expr_mod]: ../expressions/ExpressionModifier.java
+[numb]: ../expressions/Number.java
+[frac]: ../expressions/Fraction.java
+[squar]: ../expressions/SquareRoot.java
+[poly]: ../expressions/Polynom.java
+[value]: ../expressions/Value.java
 
-[latex_manager]: src/latex/LatexParseManager.java
-[latex_parser]: src/latex/LatexParser.java
+[latex_manager]: ../latex/LatexParseManager.java
+[latex_parser]: ../latex/LatexParser.java
 
-[control]: src/math/calculators/Control.java
+[control]: ../math/calculators/Control.java

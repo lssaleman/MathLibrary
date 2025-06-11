@@ -3,12 +3,19 @@ package expressions.tests;
 import expressions.Expression;
 import expressions.Fraction;
 import expressions.Number;
+import util.Notifications;
 
 import java.util.Random;
 
 public class NumberTest {
     public static final int GENERAL_TEST_AMOUNT = 30;
     private static String errorMessage = "";
+
+    private static final String NUMBER_INIT = "NUMBER_INIT";
+    private static final String NUMBER_ADDITION_NUMBER = "NUMBER_ADDITION_NUMBER";
+    private static final String NUMBER_SUBTRACTION_NUMBER = "NUMBER_SUBTRACTION_NUMBER";
+    private static final String NUMBER_MULTIPLICATION_NUMBER = "NUMBER_MULTIPLICATION_NUMBER";
+    private static final String NUMBER_DIVISION_NUMBER = "NUMBER_DIVISION_NUMBER";
 
 
     public static void main(String[] args) {
@@ -17,34 +24,34 @@ public class NumberTest {
 
     public static void startNumberTesting() {
         if (!initTest()) {
-            System.out.println("Error: NUMBER_INIT");
+            System.out.println(Notifications.FAILED + NUMBER_INIT);
             System.out.println(errorMessage);
         } else {
-            System.out.println("Passed: NUMBER_INIT");
+            System.out.println(Notifications.PASSED + NUMBER_INIT);
         }
-        if(!numberAdditionTest()) {
-            System.out.println("Error: NUMBER_ADDITION");
+        if(!numberAdditionNumber()) {
+            System.out.println(Notifications.FAILED + NUMBER_ADDITION_NUMBER);
             System.out.println(errorMessage);
         } else {
-            System.out.println("Passed: NUMBER_ADDITION");
+            System.out.println(Notifications.PASSED + NUMBER_ADDITION_NUMBER);
         }
-        if (!numberSubtractionTest()) {
-            System.out.println("Error: NUMBER_SUBTRACTION");
+        if (!numberSubtractionNumber()) {
+            System.out.println(Notifications.FAILED + NUMBER_SUBTRACTION_NUMBER);
             System.out.println(errorMessage);
         } else {
-        System.out.println("Passed: NUMBER_SUBTRACTION");
+        System.out.println(Notifications.PASSED + NUMBER_SUBTRACTION_NUMBER);
         }
-        if (!numberMultiplicationTest()) {
-            System.out.println("Error: NUMBER_MULTIPLICATION");
+        if (!numberMultiplicationNumber()) {
+            System.out.println(Notifications.FAILED + NUMBER_MULTIPLICATION_NUMBER);
             System.out.println(errorMessage);
         } else {
-            System.out.println("Passed: NUMBER_MULTIPLICATION");
+            System.out.println(Notifications.PASSED + NUMBER_MULTIPLICATION_NUMBER);
         }
-        if (!numberDivisionTest()) {
-            System.out.println("Error: NUMBER_DIVISION");
+        if (!numberDivisionNumber()) {
+            System.out.println(Notifications.FAILED + NUMBER_DIVISION_NUMBER);
             System.out.println(errorMessage);
         } else {
-            System.out.println("Passed: NUMBER_DIVISION");
+            System.out.println(Notifications.PASSED + NUMBER_DIVISION_NUMBER);
         }
     }
 
@@ -71,7 +78,7 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberAdditionTest() {
+    public static boolean numberAdditionNumber() {
         int value1;
         int value2;
         Random ran = new Random();
@@ -102,7 +109,7 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberSubtractionTest() {
+    public static boolean numberSubtractionNumber() {
         int value1;
         int value2;
         Random ran = new Random();
@@ -134,7 +141,7 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberMultiplicationTest() {
+    public static boolean numberMultiplicationNumber() {
         int value1;
         int value2;
         Random ran = new Random();
@@ -166,7 +173,7 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberDivisionTest() {
+    public static boolean numberDivisionNumber() {
         int value1;
         int value2;
         Random ran = new Random();

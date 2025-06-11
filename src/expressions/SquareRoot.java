@@ -38,6 +38,11 @@ public class SquareRoot extends ExpressionModifier implements Expression {
 
     }
 
+    @Override
+    public String toString() {
+        return "\\sqrt{" + value + "}";
+    }
+
 
     public Expression getValue() {
         return value;
