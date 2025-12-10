@@ -11,21 +11,13 @@ public class TestClass {
     static final LatexParseManager LPM = new LatexParseManager("src/tmp");
 
     public static void main(String[] args) {
-        Number n1 = new Number(-1);
-        Number n2 = new Number(2);
-        Fraction f1 = new Fraction(n1, n2);
-        SquareRoot s1 = new SquareRoot(f1);
-        System.out.println(f1);
-        System.out.println(n1);
-        System.out.println(n2);
-        System.out.println(s1);
-        ArrayList<Expression> values = new ArrayList<>();
-        values.add(n1);
-        values.add(n2);
-        values.add(f1);
-        values.add(s1);
-        Value v1 = new Value(values);
-        System.out.println(v1);
+        Number n1 = new Number(-5);
+        Fraction f1 = new Fraction(1, 2);
+        Fraction f2 = new Fraction(2, 3);
+        System.out.println(f1.add(f2));
+        System.out.println(f1.add(n1));
+        System.out.println(f1.div(f2));
+        System.out.println(f1.div(n1));
     }
 
 
