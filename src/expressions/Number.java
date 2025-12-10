@@ -10,6 +10,14 @@ public class Number extends ExpressionModifier {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o instanceof Number n) {
+            return this.value == n.value;
+        }
+        return false;
+    }
+
+    @Override
     public String get() {
         return String.valueOf(value);
     }
@@ -24,8 +32,14 @@ public class Number extends ExpressionModifier {
         return value >= 0;
     }
 
-    public int getValue() {
-        return value;
+    @Override
+    public boolean isOne() {
+        return value == 1;
+    }
+
+    @Override
+    public boolean isMinusOne() {
+        return value == -1;
     }
 
     @Override
@@ -66,5 +80,9 @@ public class Number extends ExpressionModifier {
             return new Number(n.value / this.value);
         }
         return expression.div(this);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

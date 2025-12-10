@@ -2,7 +2,7 @@ package expressions;
 
 import math.calculators.Control;
 
-public class ExpressionModifier implements Expression{
+public class ExpressionModifier implements Expression {
     private String prefix = "";
     private String suffix = "";
 
@@ -18,6 +18,16 @@ public class ExpressionModifier implements Expression{
 
     @Override
     public boolean isPositive() {
+        return false;
+    }
+
+    @Override
+    public boolean isOne() {
+        return false;
+    }
+
+    @Override
+    public boolean isMinusOne() {
         return false;
     }
 

@@ -7,6 +7,10 @@ public interface Expression {
 
     boolean isPositive();
 
+    boolean isOne();
+
+    boolean isMinusOne();
+
     Expression add(Expression e);
 
     Expression sub(Expression e);

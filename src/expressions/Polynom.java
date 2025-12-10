@@ -68,15 +68,10 @@ public class Polynom extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public void optimize() {
-
-    }
+    public void optimize() {}
 
     @Override
-    public void checkIntegrity() {
-
-    }
-
+    public void checkIntegrity() {}
 
     public Expression[] getValues() {
         return values;
