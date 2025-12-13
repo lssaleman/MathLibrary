@@ -1,5 +1,7 @@
 package expressions;
 
+import java.util.ArrayList;
+
 public class SquareRoot extends ExpressionModifier implements Expression {
 
     private final Expression value;
@@ -66,12 +68,18 @@ public class SquareRoot extends ExpressionModifier implements Expression {
 
     @Override
     public Expression add(Expression expression) {
-        return null;
+        ArrayList<Expression> list =  new ArrayList<>();
+        list.add(this);
+        list.add(expression);
+        return new Value(list);
     }
 
     @Override
     public Expression sub(Expression expression) {
-        return null;
+        ArrayList<Expression> list =  new ArrayList<>();
+        list.add(this);
+        list.add(expression.mul(new Number(-1)));
+        return new Value(list);
     }
 
     @Override
@@ -81,7 +89,7 @@ public class SquareRoot extends ExpressionModifier implements Expression {
             Expression newPreFactor = s.preFactor.mul(this.preFactor);
             return new SquareRoot(newValue, newPreFactor);
         }
-        return new SquareRoot(preFactor.mul(expression), this.value);
+        return new SquareRoot(this.value, preFactor.mul(expression));
     }
 
     @Override

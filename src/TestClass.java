@@ -1,7 +1,10 @@
 import expressions.Number;
 import latex.LatexParseManager;
 import expressions.*;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class TestClass {
@@ -14,6 +17,7 @@ public class TestClass {
         SquareRoot s1 = new SquareRoot(f1, n1);
         System.out.println(s1);
         System.out.println(f2);
+        System.out.println(s1.sub(s1));
     }
 
 
@@ -26,6 +30,16 @@ public class TestClass {
             }
         } catch (Exception e) {
             System.out.println("Problem beim Datei Lesen.");
+        }
+    }
+
+    public static void writeTMP(Expression expression) {
+        String errorMessage = "Failed saving: ";
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/tmp"))) {
+            bufferedWriter.append(expression.toString());
+        } catch (Exception e) {
+            System.out.println(errorMessage + "src/tmp" + " " + e.getMessage());
         }
     }
 }
