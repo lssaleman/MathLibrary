@@ -5,6 +5,8 @@
 out/
 MathLibrary.iml
 /src/tmp
+src/playground
+Class Diagram.asta
 
 ### Eclipse ###
 .apt_generated

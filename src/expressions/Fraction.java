@@ -69,14 +69,6 @@ public class Fraction extends ExpressionModifier implements Expression {
         return "-\\frac{" + numerator.mul(new Number(-1)).toString() + "}{" + denominator.toString() + "}";
     }
 
-    private void makeDenominatorPositive() {
-        if (!denominator.isPositive()) {
-            Number negation = new Number(-1);
-            numerator = numerator.mul(negation);
-            denominator = denominator.mul(negation);
-        }
-    }
-
     @Override
     public Expression add(Expression expression) {
         if (expression instanceof Fraction f) {
@@ -117,6 +109,19 @@ public class Fraction extends ExpressionModifier implements Expression {
             return oneCheck(this.mul(f.getReciprocal()));
         }
         return oneCheck(new Fraction(this.numerator, this.denominator.mul(expression)));
+    }
+
+    @Override
+    public Expression optimize() {
+        return this;
+    }
+
+    private void makeDenominatorPositive() {
+        if (!denominator.isPositive()) {
+            Number negation = new Number(-1);
+            numerator = numerator.mul(negation);
+            denominator = denominator.mul(negation);
+        }
     }
 
     public Expression getNumerator()  {

@@ -33,8 +33,8 @@ public class Value extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public void optimize() {
-
+    public Expression optimize() {
+        return this;
     }
 
     @Override

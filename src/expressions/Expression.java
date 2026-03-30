@@ -19,7 +19,7 @@ public interface Expression {
 
     Expression div(Expression e);
 
-    void optimize();
+    Expression optimize();
 
     void checkIntegrity();
 
