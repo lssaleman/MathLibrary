@@ -16,6 +16,7 @@
   - [Expression factory](#Expression-factory)
 - [Bugfixes](#bugfixes)
   - [Fix order of operations for number](#fix-order-of-operations-for-number)
+  - [Fraction class doing optimization without being told so](#fraction-class-doing-optimization-without-being-told-so)
 
 ## Introduction
 
@@ -91,3 +92,10 @@ The order of operations for "Number" is wrong. In the case of n1.sub(n2) the res
 n1 - n2, which is not the case
 
 - [x] Order for all operands is fixed
+
+### Fraction class doing optimization without being told so
+
+The Fraction simplifies to one if numerator and denominator are equal. This should not automatically
+happen
+
+- [ ] Remove logic for automated optimization
