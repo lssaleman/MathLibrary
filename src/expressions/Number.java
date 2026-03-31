@@ -1,7 +1,5 @@
 package expressions;
 
-import jdk.jfr.Experimental;
-
 public class Number extends ExpressionModifier {
     private final int value;
 
@@ -49,24 +47,24 @@ public class Number extends ExpressionModifier {
 
     @Override
     public Expression add(Expression expression) {
-        if (expression instanceof Number n) {
-            return new Number(n.value + this.value);
+        if (expression instanceof Number number) {
+            return new Number(this.value +number.value);
         }
         return expression.add(this);
     }
 
     @Override
     public Expression sub(Expression expression) {
-        if (expression instanceof Number n) {
-            return new Number(n.value - this.value);
+        if (expression instanceof Number number) {
+            return new Number(this.value - number.value);
         }
         return expression.sub(this).mul(new Number(-1));
     }
 
     @Override
     public Expression mul(Expression expression) {
-        if (expression instanceof Number n) {
-            return new Number(n.value * this.value);
+        if (expression instanceof Number number) {
+            return new Number(this.value * number.value);
         }
         return expression.mul(this);
     }
@@ -79,7 +77,10 @@ public class Number extends ExpressionModifier {
             }
             return new Number(n.value / this.value);
         }
-        return expression.div(this);
+        if (expression instanceof Fraction fraction) {
+            return this.mul(fraction.getReciprocal());
+        }
+        return this.mul(new Fraction(1, expression));
     }
 
     public int getValue() {

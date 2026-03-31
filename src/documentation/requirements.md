@@ -4,7 +4,9 @@
 
 - [Table of content](#Table-of-content)
 - [Introduction](#Introduction)
-- [Requirementslist](#Requirementslist)
+- [In Progress](#in-progress)
+- [Done](#done)
+- [Requirements list](#Requirements-list)
   - [Optimisation for fractions](#Optimisation-for-fractions)
   - [Settings Class for Expression](#Settings-Class-for-Expression)
     - [First idea](#First-ideas)
@@ -12,18 +14,27 @@
       - [Settings idea two](#Settings-idea-two)
       - [Settings idea three](#Settings-idea-three)
   - [Expression factory](#Expression-factory)
+- [Bugfixes](#bugfixes)
+  - [Fix order of operations for number](#fix-order-of-operations-for-number)
 
 ## Introduction
 
 This is where I keep my requirements for this project.
 
-## Requirementslist
+## In Progress
+
+
+## Done
+- [Fix order of operations for number](#fix-order-of-operations-for-number)
+
+## Requirements list
 
 ### Optimisation for fractions
 
 The expression type fraction does not support being optimized. optimized meaning can we simplify it
 somehow.
 
+- [ ] Come up with an idea to do that in an expression environment
 - [ ] Should be able to reduce a fraction
 - [ ] Should be able to turn fraction to Expression type number
 
@@ -71,3 +82,12 @@ would prevent a lot of complicated logic whenever you combine expressions.
 I don't know yet if this will ever make sense, but I'm leaving this here as a reminder
 
 - Use a factory to create expressions to apply settings
+
+## Bugfixes
+
+### Fix order of operations for number
+
+The order of operations for "Number" is wrong. In the case of n1.sub(n2) the result should be
+n1 - n2, which is not the case
+
+- [x] Order for all operands is fixed
