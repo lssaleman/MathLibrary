@@ -4,7 +4,7 @@
 .idea
 out/
 MathLibrary.iml
-/src/tmp
+src/tmp
 src/playground
 Class Diagram.asta
 
