@@ -30,5 +30,7 @@ public interface Expression {
     String getPrefix();
 
     String getSuffix();
+
+    Expression copy();
     
 }

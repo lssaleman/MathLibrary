@@ -23,7 +23,7 @@
 This is where I keep my requirements for this project.
 
 ## In Progress
-
+- [Settings Class for Expression](#settings-class-for-expression)
 
 ## Done
 - [Fix order of operations for number](#fix-order-of-operations-for-number)
@@ -77,7 +77,7 @@ would prevent a lot of complicated logic whenever you combine expressions.
 - The global state is the default state each expression uses
 - If you want an expression to be different you can still set different settings
 - Use Singleton pattern for this
-
+- e.g. Fractions whill create copies of their given expressions to modify the settings of their values so they make sense
 ### Expression factory
 
 I don't know yet if this will ever make sense, but I'm leaving this here as a reminder

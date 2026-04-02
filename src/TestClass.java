@@ -1,4 +1,6 @@
 import expressions.Number;
+import expressions.settings.ExpressionSettings;
+import expressions.settings.SettingsState;
 import latex.LatexParseManager;
 import expressions.*;
 
@@ -11,15 +13,21 @@ public class TestClass {
     static final LatexParseManager LPM = new LatexParseManager("src/tmp");
 
     public static void main(String[] args) {
+        ExpressionSettings expressionSettings = new ExpressionSettings();
+        expressionSettings
+                .setAutomaticallyOptimizing(false)
+                .setRenderingLeadingPluses(false);
         Number n1 = new Number(-1);
-        Fraction f1 = new Fraction(1, 2);
-        Fraction f2 = new Fraction(-2, -2);
-        SquareRoot s1 = new SquareRoot(f1, n1);
-        System.out.println(s1);
-        System.out.println(f2);
-        System.out.println(s1.sub(s1));
+        Number n2 = new Number(1);
+        Number n3 = new Number(20);
+        Number n4 = new Number(-20);
+        System.out.println(n1);
+        System.out.println(n2);
+        n3.setExpressionSettings(expressionSettings);
+        System.out.println(n3 + " " + n4);
+        n3.setExpressionSettings(SettingsState.getExpressionSettings());
+        System.out.println(n4 + " " + n3);
     }
-
 
     public static void readTMP() {
         File f = new File("src/tmp");

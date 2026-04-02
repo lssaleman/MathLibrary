@@ -1,10 +1,13 @@
 package expressions;
 
+import expressions.settings.ExpressionSettings;
+import expressions.settings.SettingsState;
 import math.calculators.Control;
 
 public class ExpressionModifier implements Expression {
     private String prefix = "";
     private String suffix = "";
+    private ExpressionSettings expressionSettings;
 
     @Override
     public String get() {
@@ -58,9 +61,7 @@ public class ExpressionModifier implements Expression {
     }
 
     @Override
-    public void checkIntegrity() {
-
-    }
+    public void checkIntegrity() {}
 
     @Override
     public void setPrefix(String prefix) {
@@ -80,5 +81,21 @@ public class ExpressionModifier implements Expression {
     @Override
     public String getSuffix() {
         return suffix;
+    }
+
+    @Override
+    public Expression copy() {
+        return null;
+    }
+
+    public void setExpressionSettings(ExpressionSettings expressionSettings) {
+        this.expressionSettings = expressionSettings;
+    }
+
+    protected ExpressionSettings getSettings() {
+        if (expressionSettings == null) {
+            return SettingsState.getExpressionSettings();
+        }
+        return expressionSettings;
     }
 }

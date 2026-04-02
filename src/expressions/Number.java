@@ -1,5 +1,7 @@
 package expressions;
 
+import expressions.settings.ExpressionSettings;
+
 public class Number extends ExpressionModifier {
     private final int value;
 
@@ -42,7 +44,25 @@ public class Number extends ExpressionModifier {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        ExpressionSettings expressionSettings = getSettings();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (expressionSettings.isRenderingLeadingPluses() && this.value >= 0) {
+            stringBuilder.append("+");
+        }
+        if (expressionSettings.isRenderingOnes()) {
+            stringBuilder.append(this.value);
+            return stringBuilder.toString();
+        }
+        if (this.value == -1) {
+            stringBuilder.append("-");
+            return stringBuilder.toString();
+        }
+        if (this.value == 1) {
+            return stringBuilder.toString();
+        }
+        stringBuilder.append(this.value);
+        return stringBuilder.toString();
     }
 
     @Override
@@ -75,12 +95,17 @@ public class Number extends ExpressionModifier {
             if (this.value % n.value != 0) {
                 return new Fraction(this.value, n.value);
             }
-            return new Number(n.value / this.value);
+            return new Number(this.value / n.value);
         }
         if (expression instanceof Fraction fraction) {
             return this.mul(fraction.getReciprocal());
         }
         return this.mul(new Fraction(1, expression));
+    }
+
+    @Override
+    public Expression copy() {
+        return new Number(this.value);
     }
 
     public int getValue() {
