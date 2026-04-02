@@ -23,9 +23,13 @@ public class TestClass {
         Number n4 = new Number(-20);
         System.out.println(n1);
         System.out.println(n2);
-        n3.setExpressionSettings(expressionSettings);
         System.out.println(n3 + " " + n4);
-        n3.setExpressionSettings(SettingsState.getExpressionSettings());
+        System.out.println(n4 + " " + n3);
+
+        SettingsState.setExpressionSettings(new ExpressionSettings().setRenderingLeadingPluses(true));
+        n3.setRenderLeadingPluses(false);
+        System.out.println(n3 + " " + n4);
+        n3.setRenderLeadingPluses(true);
         System.out.println(n4 + " " + n3);
     }
 

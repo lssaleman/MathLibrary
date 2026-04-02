@@ -88,14 +88,42 @@ public class ExpressionModifier implements Expression {
         return null;
     }
 
-    public void setExpressionSettings(ExpressionSettings expressionSettings) {
-        this.expressionSettings = expressionSettings;
-    }
-
     protected ExpressionSettings getSettings() {
         if (expressionSettings == null) {
             return SettingsState.getExpressionSettings();
         }
         return expressionSettings;
+    }
+
+    public void setExpressionSettings(ExpressionSettings expressionSettings) {
+        this.expressionSettings = expressionSettings;
+    }
+
+    public void setRenderLeadingPluses(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setRenderingLeadingPluses(value);
+    }
+
+    public void setRenderingOnes(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setRenderingOnes(value);
+    }
+
+    public void setAutomaticallyOptimizing(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setAutomaticallyOptimizing(value);
+    }
+
+    public void setAutomaticallyPassingSettingsToChildren(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setAutomaticallyPassingSettingsToChildren(value);
     }
 }

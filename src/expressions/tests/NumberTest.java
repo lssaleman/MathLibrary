@@ -6,11 +6,12 @@ import expressions.Number;
 import expressions.settings.ExpressionSettings;
 import util.Notifications;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class NumberTest {
     private static final int GENERAL_TEST_AMOUNT = 1000;
-    private static String errorMessage = "";
+    private static String errorMessage;
 
     private static final String NUMBER_INIT = "NUMBER_INIT";
     private static final String NUMBER_SETTINGS = "NUMBER_SETTINGS";
@@ -19,51 +20,52 @@ public class NumberTest {
     private static final String NUMBER_MULTIPLICATION_NUMBER = "NUMBER_MULTIPLICATION_NUMBER";
     private static final String NUMBER_DIVISION_NUMBER = "NUMBER_DIVISION_NUMBER";
 
-
-    public static void main(String[] args) {
-        startNumberTesting();
-    }
-
-    public static void startNumberTesting() {
+    public static void startNumberTests(ArrayList<String> failedTests) {
         if (!numberInit()) {
-            System.out.print(Notifications.FAILED + NUMBER_INIT + ": ");
-            System.out.println(errorMessage);
+            String message = Notifications.FAILED + NUMBER_INIT + ": " + errorMessage;
+            System.out.println(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + NUMBER_INIT);
         }
-        if (!settingsTestNumber()) {
-            System.out.print(Notifications.FAILED + NUMBER_SETTINGS + ": ");
-            System.out.println(errorMessage);
+        if (!numberTestSettings()) {
+            String message = Notifications.FAILED + NUMBER_SETTINGS + ": " + errorMessage;
+            System.out.println(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + NUMBER_SETTINGS);
         }
         if (!numberAdditionNumber()) {
-            System.out.print(Notifications.FAILED + NUMBER_ADDITION_NUMBER + ": ");
-            System.out.println(errorMessage);
+            String message = Notifications.FAILED + NUMBER_ADDITION_NUMBER + ": " + errorMessage;
+            System.out.println(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + NUMBER_ADDITION_NUMBER);
         }
         if (!numberSubtractionNumber()) {
-            System.out.print(Notifications.FAILED + NUMBER_SUBTRACTION_NUMBER + ": ");
-            System.out.println(errorMessage);
+            String message = Notifications.FAILED + NUMBER_SUBTRACTION_NUMBER + ": " + errorMessage;
+            System.out.println(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + NUMBER_SUBTRACTION_NUMBER);
         }
         if (!numberMultiplicationNumber()) {
-            System.out.print(Notifications.FAILED + NUMBER_MULTIPLICATION_NUMBER + ": ");
-            System.out.println(errorMessage);
+            String message = Notifications.FAILED + NUMBER_MULTIPLICATION_NUMBER + ": " + errorMessage;
+            System.out.println(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + NUMBER_MULTIPLICATION_NUMBER);
         }
         if (!numberDivisionNumber()) {
-            System.out.print(Notifications.FAILED + NUMBER_DIVISION_NUMBER + ": ");
-            System.out.println(errorMessage);
+            String message = Notifications.FAILED + NUMBER_DIVISION_NUMBER + ": " + errorMessage;
+            System.out.println(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + NUMBER_DIVISION_NUMBER);
         }
     }
 
-    public static boolean numberInit() {
+    private static boolean numberInit() {
         if (!numberInitHelp(0)) {
             return false;
         }
@@ -77,16 +79,16 @@ public class NumberTest {
         return numberInitHelp(new Random().nextInt(limit * -1, limit + 1));
     }
 
-    public static boolean numberInitHelp(int testValue) {
+    private static boolean numberInitHelp(int testValue) {
         Number number = new Number(testValue);
         if (number.getValue() != testValue) {
-            errorMessage = "Value should be " + testValue + ". Observed " + number.getValue();
+            errorMessage = "Value should be " + testValue + ". Observed " + number;
             return false;
         }
         return true;
     }
 
-    public static boolean settingsTestNumber() {
+    private static boolean numberTestSettings() {
         String firstHalf = "String value of number should equal \"";
         String secondHalf = "\". Observed ";
 
@@ -223,7 +225,7 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberAdditionNumber() {
+    private static boolean numberAdditionNumber() {
         int value1;
         int value2;
         Random ran = new Random();
@@ -238,22 +240,22 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberAdditionTestHelp(int x, int y) {
+    private static boolean numberAdditionTestHelp(int x, int y) {
         Number n1 = new Number(x);
         Number n2 = new Number(y);
         Number result = (Number) n1.add(n2);
         if (n1 == result || n2 == result) {
-            errorMessage = "Error: Operation did not create a new Number Object";
+            errorMessage = "Operation did not create a new Number Object";
             return false;
         }
         if (result.getValue() != x + y) {
-            errorMessage = "Error: Value of addition" + x + "+" + y + " should be \"" + (x + y) + "\". Observed " + result.getValue();
+            errorMessage = "Value of addition" + x + "+" + y + " should be \"" + (x + y) + "\". Observed " + result.getValue();
             return false;
         }
         return true;
     }
 
-    public static boolean numberSubtractionNumber() {
+    private static boolean numberSubtractionNumber() {
         int value1;
         int value2;
         Random ran = new Random();
@@ -268,23 +270,23 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberSubtractionTestHelp(int x, int y) {
+    private static boolean numberSubtractionTestHelp(int x, int y) {
         Number n1 = new Number(x);
         Number n2 = new Number(y);
         Number result = (Number) n1.sub(n2);
 
         if (n1 == result || n2 == result) {
-            errorMessage = "Error: Operation did not create a new Number Object";
+            errorMessage = "Operation did not create a new Number Object";
             return false;
         }
         if (result.getValue() != x - y) {
-            errorMessage = "Error: Value of subtraction " + x + "-" + y + " should be \"" + (x - y) + "\". Observed " + result.getValue();
+            errorMessage = "Value of subtraction " + x + "-" + y + " should be \"" + (x - y) + "\". Observed " + result.getValue();
             return false;
         }
         return true;
     }
 
-    public static boolean numberMultiplicationNumber() {
+    private static boolean numberMultiplicationNumber() {
         int value1;
         int value2;
         Random ran = new Random();
@@ -299,23 +301,23 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberMultiplicationTestHelp(int x, int y) {
+    private static boolean numberMultiplicationTestHelp(int x, int y) {
         Number n1 = new Number(x);
         Number n2 = new Number(y);
         Number result = (Number) n1.mul(n2);
 
         if (n1 == result || n2 == result) {
-            errorMessage = "Error: Operation did not create a new Number Object";
+            errorMessage = "Operation did not create a new Number Object";
             return false;
         }
         if (result.getValue() != x * y) {
-            errorMessage = "Error: Value of multiplication  " + x + "*" + y + " should be \"" + (x * y) + "\". Observed " + result.getValue();
+            errorMessage = "Value of multiplication  " + x + "*" + y + " should be \"" + (x * y) + "\". Observed " + result.getValue();
             return false;
         }
         return true;
     }
 
-    public static boolean numberDivisionNumber() {
+    private static boolean numberDivisionNumber() {
         Random ran = new Random();
         int limit = 1000;
         int value1;
@@ -333,7 +335,7 @@ public class NumberTest {
         return true;
     }
 
-    public static boolean numberDivisionTestHelp(int x, int y) {
+    private static boolean numberDivisionTestHelp(int x, int y) {
         Number n1 = new Number(x);
         Number n2 = new Number(y);
         Expression unknownResult;

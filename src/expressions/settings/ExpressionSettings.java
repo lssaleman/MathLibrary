@@ -1,5 +1,7 @@
 package expressions.settings;
 
+import expressions.Expression;
+
 public class ExpressionSettings {
     private boolean renderingLeadingPluses = false;
     private boolean renderingOnes = true;
@@ -40,5 +42,13 @@ public class ExpressionSettings {
     public ExpressionSettings setAutomaticallyPassingSettingsToChildren(boolean automaticallyPassingSettingsToChildren) {
         this.automaticallyPassingSettingsToChildren = automaticallyPassingSettingsToChildren;
         return this;
+    }
+
+    public ExpressionSettings copy() {
+        return new ExpressionSettings()
+                .setRenderingOnes(this.renderingOnes)
+                .setRenderingLeadingPluses(this.renderingLeadingPluses)
+                .setAutomaticallyOptimizing(this.automaticallyOptimizing)
+                .setAutomaticallyPassingSettingsToChildren(this.automaticallyPassingSettingsToChildren);
     }
 }
