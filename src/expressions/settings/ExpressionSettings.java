@@ -1,7 +1,5 @@
 package expressions.settings;
 
-import expressions.Expression;
-
 public class ExpressionSettings {
     private boolean renderingLeadingPluses = false;
     private boolean renderingOnes = true;

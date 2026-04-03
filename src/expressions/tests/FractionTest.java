@@ -1,6 +1,7 @@
 package expressions.tests;
 
 import expressions.Fraction;
+import expressions.settings.ExpressionSettings;
 import util.Notifications;
 
 import java.util.ArrayList;
@@ -17,17 +18,17 @@ public class FractionTest {
     private static final String FRACTION_DIVISION_FRACTION = "FRACTION_DIVISION_FRACTION";
 
     public static void startFractionTests(ArrayList<String> failedTests) {
-        if (!fractionInit()) {
+        if (!fractionInitTest()) {
             String message = Notifications.FAILED + FRACTION_INIT + ": " + errorMessage;
             System.out.println(message);
             failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + FRACTION_INIT);
         }
-        if (!fractionTestSettings()) {
-            String message = Notifications.WORK_IN_PROGRESS + FRACTION_SETTINGS + ": " + errorMessage;
+        if (!fractionSettingsTest()) {
+            String message = Notifications.FAILED + FRACTION_SETTINGS + ": " + errorMessage;
             System.out.println(message);
-            //failedTests.add(message);
+            failedTests.add(message);
         } else {
             System.out.println(Notifications.PASSED + FRACTION_SETTINGS);
         }
@@ -61,7 +62,7 @@ public class FractionTest {
         }
     }
 
-    private static boolean fractionInit() {
+    private static boolean fractionInitTest() {
         Fraction fraction;
         String expected;
 
@@ -92,10 +93,128 @@ public class FractionTest {
             errorMessage = "Fraction should " + expected + ". Observed " + fraction;
             return false;
         }
+
+        fraction = new Fraction(1, -2);
+        expected = "(-1)/(2)";
+        if (!fraction.get().equals(expected)) {
+            errorMessage = "Fraction values should be " + expected + ". Observed " + fraction.get();
+            return false;
+        }
+
+        fraction = new Fraction(-1, 2);
+        expected = "(-1)/(2)";
+        if (!fraction.get().equals(expected)) {
+            errorMessage = "Fraction values should be " + expected + ". Observed " + fraction.get();
+            return false;
+        }
         return true;
     }
 
-    private static boolean fractionTestSettings() {
+
+    private static boolean fractionSettingsTest() {
+        ExpressionSettings expressionSettings;
+        Fraction fraction;
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(-1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(-1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(-1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(-1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "+\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "+\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(1, 2).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "\\frac{1}{2}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "\\frac{1}{1}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "+")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "+\\frac{1}{1}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(-1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-\\frac{1}{1}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(-1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(true).setRenderingLeadingPluses(true);
+        fraction = (Fraction) new Fraction(-1, 1).setExpressionSettings(expressionSettings);
+        if (fractionSettingsTestHelperFailed(fraction, "-\\frac{1}{1}")) {
+            return false;
+        }
+
+        expressionSettings = new ExpressionSettings().setRenderingOnes(false).setRenderingLeadingPluses(false);
+        fraction = (Fraction) new Fraction(-1, 1).setExpressionSettings(expressionSettings);
+        return !fractionSettingsTestHelperFailed(fraction, "-");
+    }
+
+    private static boolean fractionSettingsTestHelperFailed(Fraction fraction, String expected) {
+        if(!fraction.toString().equals(expected)) {
+            errorMessage = "Fraction should render " + expected + ". Observed " + fraction;
+            return true;
+        }
         return false;
     }
 

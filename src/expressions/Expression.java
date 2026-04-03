@@ -36,7 +36,7 @@ public interface Expression {
 
     Expression copy();
 
-    public void setExpressionSettings(ExpressionSettings expressionSettings);
+    public Expression setExpressionSettings(ExpressionSettings expressionSettings);
 
     public Expression setRenderLeadingPluses(boolean value);
 

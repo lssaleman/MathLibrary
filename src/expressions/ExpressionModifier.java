@@ -89,8 +89,9 @@ public class ExpressionModifier implements Expression {
     }
 
     @Override
-    public void setExpressionSettings(ExpressionSettings expressionSettings) {
+    public Expression setExpressionSettings(ExpressionSettings expressionSettings) {
         this.expressionSettings = expressionSettings;
+        return this;
     }
 
     @Override

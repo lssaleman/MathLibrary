@@ -67,7 +67,7 @@ public class Fraction extends ExpressionModifier implements Expression {
     @Override
     public String toString() {
         StringBuilder fraction = new StringBuilder();
-        ExpressionSettings expressionSettings = SettingsState.getExpressionSettings();
+        ExpressionSettings expressionSettings = getSettings();
 
         if (numerator.isPositive()) {
             if (expressionSettings.isRenderingLeadingPluses()) {
