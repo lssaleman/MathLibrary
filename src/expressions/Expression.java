@@ -1,5 +1,8 @@
 package expressions;
 
+import expressions.settings.ExpressionSettings;
+import expressions.settings.SettingsState;
+
 public interface Expression {
     String get();
 
@@ -32,5 +35,14 @@ public interface Expression {
     String getSuffix();
 
     Expression copy();
-    
+
+    public void setExpressionSettings(ExpressionSettings expressionSettings);
+
+    public Expression setRenderLeadingPluses(boolean value);
+
+    public Expression setRenderingOnes(boolean value);
+
+    public Expression setAutomaticallyOptimizing(boolean value);
+
+    public Expression setAutomaticallyPassingSettingsToChildren(boolean value);
 }

@@ -88,42 +88,51 @@ public class ExpressionModifier implements Expression {
         return null;
     }
 
+    @Override
+    public void setExpressionSettings(ExpressionSettings expressionSettings) {
+        this.expressionSettings = expressionSettings;
+    }
+
+    @Override
+    public Expression setRenderLeadingPluses(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setRenderingLeadingPluses(value);
+        return this;
+    }
+
+    @Override
+    public Expression setRenderingOnes(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setRenderingOnes(value);
+        return this;
+    }
+
+    @Override
+    public Expression setAutomaticallyOptimizing(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setAutomaticallyOptimizing(value);
+        return this;
+    }
+
+    @Override
+    public Expression setAutomaticallyPassingSettingsToChildren(boolean value) {
+        if (this.expressionSettings == null) {
+            this.expressionSettings = SettingsState.getExpressionSettings().copy();
+        }
+        this.expressionSettings.setAutomaticallyPassingSettingsToChildren(value);
+        return this;
+    }
+
     protected ExpressionSettings getSettings() {
         if (expressionSettings == null) {
             return SettingsState.getExpressionSettings();
         }
         return expressionSettings;
-    }
-
-    public void setExpressionSettings(ExpressionSettings expressionSettings) {
-        this.expressionSettings = expressionSettings;
-    }
-
-    public void setRenderLeadingPluses(boolean value) {
-        if (this.expressionSettings == null) {
-            this.expressionSettings = SettingsState.getExpressionSettings().copy();
-        }
-        this.expressionSettings.setRenderingLeadingPluses(value);
-    }
-
-    public void setRenderingOnes(boolean value) {
-        if (this.expressionSettings == null) {
-            this.expressionSettings = SettingsState.getExpressionSettings().copy();
-        }
-        this.expressionSettings.setRenderingOnes(value);
-    }
-
-    public void setAutomaticallyOptimizing(boolean value) {
-        if (this.expressionSettings == null) {
-            this.expressionSettings = SettingsState.getExpressionSettings().copy();
-        }
-        this.expressionSettings.setAutomaticallyOptimizing(value);
-    }
-
-    public void setAutomaticallyPassingSettingsToChildren(boolean value) {
-        if (this.expressionSettings == null) {
-            this.expressionSettings = SettingsState.getExpressionSettings().copy();
-        }
-        this.expressionSettings.setAutomaticallyPassingSettingsToChildren(value);
     }
 }
