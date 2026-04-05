@@ -68,8 +68,7 @@ public class Fraction extends ExpressionModifier implements Expression {
     public String toString() {
         StringBuilder fraction = new StringBuilder();
         ExpressionSettings expressionSettings = getSettings();
-
-        if (numerator.isPositive()) {
+        if (isPositive()) {
             if (expressionSettings.isRenderingLeadingPluses()) {
                 fraction.append("+");
             }
@@ -116,8 +115,8 @@ public class Fraction extends ExpressionModifier implements Expression {
     @Override
     public Expression sub(Expression expression) {
         if (expression instanceof Fraction f) {
-            Fraction tmp1 = new Fraction(f.numerator.mul(this.denominator), f.denominator.mul(this.denominator));
-            Fraction tmp2 = new Fraction(this.numerator.mul(f.denominator), this.denominator.mul(f.denominator));
+            Fraction tmp1 = new Fraction(this.numerator.mul(f.denominator), this.denominator.mul(f.denominator));
+            Fraction tmp2 = new Fraction(f.numerator.mul(this.denominator), f.denominator.mul(this.denominator));
             return checkForOptimization(new Fraction(tmp1.numerator.sub(tmp2.numerator), tmp1.denominator));
         }
         Fraction fraction = new Fraction(expression, new Number(1));
@@ -146,6 +145,9 @@ public class Fraction extends ExpressionModifier implements Expression {
     public Expression optimize() {
         if (this.numerator.equals(this.denominator)) {
             return new Number(1);
+        }
+        if (this.numerator.mul(new Number(-1)).equals(this.denominator)) {
+            return new Number(-1);
         }
         Expression gcd = this.numerator.getGCD(this.denominator);
         this.numerator = this.numerator.div(gcd);
