@@ -40,6 +40,7 @@ public class Polynom extends ExpressionModifier implements Expression {
     /**
      * A Value is always defined as positive when it doesn't represent one
      * fixed number. So no matter what this will always return true
+     *
      * @return always true
      */
     @Override
@@ -48,22 +49,22 @@ public class Polynom extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public Expression add(Expression e) {
+    public Expression add(Expression expression) {
         return null;
     }
 
     @Override
-    public Expression sub(Expression e) {
+    public Expression sub(Expression expression) {
         return null;
     }
 
     @Override
-    public Expression mul(Expression e) {
+    public Expression mul(Expression expression) {
         return null;
     }
 
     @Override
-    public Expression div(Expression e) {
+    public Expression div(Expression expression) {
         return null;
     }
 
@@ -73,7 +74,8 @@ public class Polynom extends ExpressionModifier implements Expression {
     }
 
     @Override
-    public void checkIntegrity() {}
+    public void checkIntegrity() {
+    }
 
     public Expression[] getValues() {
         return values;

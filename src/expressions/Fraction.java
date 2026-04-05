@@ -10,25 +10,25 @@ public class Fraction extends ExpressionModifier implements Expression {
     public Fraction(Expression numerator, Expression denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
-        setUpFraction();
+        applyFractionRules();
     }
 
     public Fraction(Expression numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = new Number(denominator);
-        setUpFraction();
+        applyFractionRules();
     }
 
     public Fraction(int numerator, Expression denominator) {
         this.numerator = new Number(numerator);
         this.denominator = denominator;
-        setUpFraction();
+        applyFractionRules();
     }
 
     public Fraction(int numerator, int denominator) {
         this.numerator = new Number(numerator);
         this.denominator = new Number(denominator);
-        setUpFraction();
+        applyFractionRules();
     }
 
     @Override
@@ -105,12 +105,12 @@ public class Fraction extends ExpressionModifier implements Expression {
         if (expression instanceof Fraction f) {
             Fraction tmp1 = new Fraction(f.numerator.mul(this.denominator), f.denominator.mul(this.denominator));
             Fraction tmp2 = new Fraction(this.numerator.mul(f.denominator), this.denominator.mul(f.denominator));
-            return new Fraction(tmp1.numerator.add(tmp2.numerator), tmp1.denominator).optimize();
+            return checkForOptimization(new Fraction(tmp1.numerator.add(tmp2.numerator), tmp1.denominator));
         }
         Fraction fraction = new Fraction(expression, new Number(1));
         fraction.numerator = fraction.numerator.mul(this.denominator);
         fraction.denominator = fraction.denominator.mul(this.denominator);
-        return new Fraction(this.numerator.add(fraction.numerator).mul(new Number(1)), this.denominator).optimize();
+        return checkForOptimization(new Fraction(this.numerator.add(fraction.numerator).mul(new Number(1)), this.denominator));
     }
 
     @Override
@@ -118,28 +118,28 @@ public class Fraction extends ExpressionModifier implements Expression {
         if (expression instanceof Fraction f) {
             Fraction tmp1 = new Fraction(f.numerator.mul(this.denominator), f.denominator.mul(this.denominator));
             Fraction tmp2 = new Fraction(this.numerator.mul(f.denominator), this.denominator.mul(f.denominator));
-            return new Fraction(tmp1.numerator.sub(tmp2.numerator), tmp1.denominator).optimize();
+            return checkForOptimization(new Fraction(tmp1.numerator.sub(tmp2.numerator), tmp1.denominator));
         }
         Fraction fraction = new Fraction(expression, new Number(1));
         fraction.numerator = fraction.numerator.mul(this.denominator);
         fraction.denominator = fraction.denominator.mul(this.denominator);
-        return new Fraction(this.numerator.sub(fraction.numerator).mul(new Number(1)), this.denominator).optimize();
+        return checkForOptimization(new Fraction(this.numerator.sub(fraction.numerator).mul(new Number(1)), this.denominator));
     }
 
     @Override
     public Expression mul(Expression expression) {
         if (expression instanceof Fraction f) {
-            return new Fraction(this.numerator.mul(f.numerator), this.denominator.mul(f.denominator)).optimize();
+            return checkForOptimization(new Fraction(this.numerator.mul(f.numerator), this.denominator.mul(f.denominator)));
         }
-        return new Fraction(this.numerator.mul(expression), this.denominator).optimize();
+        return checkForOptimization(new Fraction(this.numerator.mul(expression), this.denominator));
     }
 
     @Override
     public Expression div(Expression expression) {
         if (expression instanceof Fraction f) {
-            return this.mul(f.getReciprocal()).optimize();
+            return checkForOptimization(this.mul(f.getReciprocal()));
         }
-        return new Fraction(this.numerator, this.denominator.mul(expression)).optimize();
+        return checkForOptimization(new Fraction(this.numerator, this.denominator.mul(expression)));
     }
 
     @Override
@@ -147,6 +147,10 @@ public class Fraction extends ExpressionModifier implements Expression {
         if (this.numerator.equals(this.denominator)) {
             return new Number(1);
         }
+        Expression gcd = this.numerator.getGCD(this.denominator);
+        this.numerator = this.numerator.div(gcd);
+        this.denominator = this.denominator.div(gcd);
+        applyFractionRules();
         return this;
     }
 
@@ -162,7 +166,7 @@ public class Fraction extends ExpressionModifier implements Expression {
         return new Fraction(this.getDenominator(), this.getNumerator());
     }
 
-    private void setUpFraction() {
+    private void applyFractionRules() {
         makeDenominatorPositive();
         overrideSettingsOfValue(numerator);
         overrideSettingsOfValue(denominator);
@@ -181,6 +185,13 @@ public class Fraction extends ExpressionModifier implements Expression {
                 .setRenderingLeadingPluses(false)
                 .setRenderingOnes(true);
         expression.setExpressionSettings(expressionSettings);
+        return expression;
+    }
+
+    private Expression checkForOptimization(Expression expression) {
+        if (getSettings().isAutomaticallyOptimizing()) {
+            return expression.optimize();
+        }
         return expression;
     }
 }

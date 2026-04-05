@@ -8,7 +8,7 @@
 - [Done](#done)
 - [Requirements list](#Requirements-list)
   - [Optimisation for fractions](#Optimisation-for-fractions)
-  - [Settings Class for Expression](#Settings-Class-for-Expression)
+  - [Settings Class for Expression](#settings-class-for-number-and-fraction)
     - [First idea](#First-ideas)
       - [Settings idea one](#Settings-idea-one)
       - [Settings idea two](#Settings-idea-two)
@@ -23,7 +23,7 @@
 This is where I keep my requirements for this project.
 
 ## In Progress
-- [Settings Class for Expression](#settings-class-for-expression)
+- [Settings Class for Expression](#settings-class-for-number-and-fraction)
 
 ## Done
 - [Fix order of operations for number](#fix-order-of-operations-for-number)
@@ -39,45 +39,32 @@ somehow.
 - [ ] Should be able to reduce a fraction
 - [ ] Should be able to turn fraction to Expression type number
 
-### Settings Class for Expression
+### Settings Class for Number and Fraction
 
-It would be useful to give an expression rendering instructions. Setting those manually would be
-cumbersome. The idea is to create a settings class that can be passed to an expression. If the expression
-then creates a new expression it can be set to automatically pass the settings over to the new one. This
-would prevent a lot of complicated logic whenever you combine expressions. 
+it is useful to give expressions rendering instructions to simplify program logic
 
-- [ ] Thinking about a settings model
-- [ ] Thinking about how to pass the settings to an expression
-- [ ] Create settings class
-- [ ] Update expressions
+- [x] Thinking about a settings model
+- [x] Thinking about how to pass the settings to an expression
+- [x] Create settings class
+- [x] Update Number
+- [x] Write Tests for Number
+- [x] Update Fraction
+- [x] Write Tests for Fraction
 
+#### Implementation
 
-#### First ideas
+- Created a settings class
+- settings class setters return the class itself
+- Created a global settings state
+- Expressions can be set to have their own settings
+  - They can be given an entire setting class
+  - Or individual properties can be set
+- Possible settings:
+  - Render leading plus
+  - Render one (vor variables that should not have a leading one)
+  - Automatically optimize
+  - Pass settings to children
 
-##### Settings idea one
-
-- Settings class has setters that can be concatenated
-- Should render a leading plus
-- Should not render ones
-- Should automatically optimize
-- Should pass settings to newly created expression
-- Settings should be passed via the constructors
-- There should be a setter for settings
-- If no settings object is passed to an expression it will set itself to default settings
-- Not all settings make sense for every type of expression which won't be a problem
-
-##### Settings idea two
-
-- Make settings a global state that all expressions use
-- Use Singleton pattern for this
-
-##### Settings idea three
-
-- Combine the first and the second idea
-- The global state is the default state each expression uses
-- If you want an expression to be different you can still set different settings
-- Use Singleton pattern for this
-- e.g. Fractions whill create copies of their given expressions to modify the settings of their values so they make sense
 ### Expression factory
 
 I don't know yet if this will ever make sense, but I'm leaving this here as a reminder
@@ -99,3 +86,7 @@ The Fraction simplifies to one if numerator and denominator are equal. This shou
 happen
 
 - [ ] Remove logic for automated optimization
+
+### Settings Class for Expression Update 1
+
+It would maybe be nice to set settings for specific Expression

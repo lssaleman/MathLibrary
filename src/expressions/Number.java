@@ -68,7 +68,7 @@ public class Number extends ExpressionModifier {
     @Override
     public Expression add(Expression expression) {
         if (expression instanceof Number number) {
-            return new Number(this.value +number.value);
+            return new Number(this.value + number.value);
         }
         return expression.add(this);
     }
@@ -104,11 +104,32 @@ public class Number extends ExpressionModifier {
     }
 
     @Override
+    public Expression getGCD(Expression expression) {
+        if (expression instanceof Number number) {
+            return new Number(getGCD(number.value));
+        }
+        return expression.getGCD(this);
+    }
+
+    @Override
     public Expression copy() {
         return new Number(this.value);
     }
 
     public int getValue() {
         return value;
+    }
+
+    private int getGCD(int number) {
+        int x = Math.abs(this.value);
+        int y = Math.abs(number);
+        while (y != 0) {
+            if (x > y) {
+                x = x - y;
+            } else {
+                y = y - x;
+            }
+        }
+        return x;
     }
 }

@@ -1,7 +1,6 @@
 package expressions;
 
 import expressions.settings.ExpressionSettings;
-import expressions.settings.SettingsState;
 
 public interface Expression {
     String get();
@@ -14,13 +13,15 @@ public interface Expression {
 
     boolean isMinusOne();
 
-    Expression add(Expression e);
+    Expression add(Expression expression);
 
-    Expression sub(Expression e);
+    Expression sub(Expression expression);
 
-    Expression mul(Expression e);
+    Expression mul(Expression expression);
 
-    Expression div(Expression e);
+    Expression div(Expression expression);
+
+    Expression getGCD(Expression expression);
 
     Expression optimize();
 
