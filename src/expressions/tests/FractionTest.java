@@ -2,7 +2,6 @@ package expressions.tests;
 
 import expressions.Expression;
 import expressions.Fraction;
-import expressions.Number;
 import expressions.settings.ExpressionSettings;
 import expressions.settings.SettingsState;
 import util.Notifications;
