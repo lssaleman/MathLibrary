@@ -7,12 +7,8 @@
 - [In Progress](#in-progress)
 - [Done](#done)
 - [Requirements list](#Requirements-list)
-  - [Optimisation for fractions](#Optimisation-for-fractions)
-  - [Settings Class for Expression](#settings-class-for-number-and-fraction)
-    - [First idea](#First-ideas)
-      - [Settings idea one](#Settings-idea-one)
-      - [Settings idea two](#Settings-idea-two)
-      - [Settings idea three](#Settings-idea-three)
+  - [Optimisation for fractions with Numbers](#Optimisation-for-fractions-with-numbers)
+  - [Settings Class for Number and Fraction](#settings-class-for-number-and-fraction)
   - [Expression factory](#Expression-factory)
 - [Bugfixes](#bugfixes)
   - [Fix order of operations for number](#fix-order-of-operations-for-number)
@@ -23,14 +19,16 @@
 This is where I keep my requirements for this project.
 
 ## In Progress
-- [Settings Class for Expression](#settings-class-for-number-and-fraction)
+
 
 ## Done
 - [Fix order of operations for number](#fix-order-of-operations-for-number)
+- [Settings Class for Number and Fraction](#settings-class-for-number-and-fraction)
+- [Optimisation for fractions with Numbers](#Optimisation-for-fractions)
 
 ## Requirements list
 
-### Optimisation for fractions
+### Optimisation for fractions with numbers
 
 The expression type fraction does not support being optimized. optimized meaning can we simplify it
 somehow.
@@ -85,8 +83,16 @@ n1 - n2, which is not the case
 The Fraction simplifies to one if numerator and denominator are equal. This should not automatically
 happen
 
-- [ ] Remove logic for automated optimization
+- [x] Remove logic for automated optimization
 
 ### Settings Class for Expression Update 1
 
 It would maybe be nice to set settings for specific Expression
+
+### Design for Value is needed
+
+#### First idea
+
+- Values always consist of two expressions
+- Values can be in four different states, plus, minus, multiply or subtract
+- Values can hold Values since they are expressions themselves 

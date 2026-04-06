@@ -5,7 +5,6 @@ import expressions.Fraction;
 import expressions.settings.ExpressionSettings;
 import expressions.settings.SettingsState;
 import util.Notifications;
-
 import java.util.ArrayList;
 
 public class FractionTest {
