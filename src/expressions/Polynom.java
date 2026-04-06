@@ -9,7 +9,10 @@ public class Polynom extends ExpressionModifier implements Expression {
         if (values == null) {
             throw new IllegalArgumentException("Polynom: given array ist not allowed to be null");
         }
-        this.values = values;
+        this.values = new Expression[values.length];
+        for (int i = 0; i < values.length; i++) {
+            this.values[i] = values[i].copy();
+        }
     }
 
     @Override

@@ -8,20 +8,20 @@ public class Fraction extends ExpressionModifier implements Expression {
     private Expression denominator;
 
     public Fraction(Expression numerator, Expression denominator) {
-        this.numerator = numerator;
-        this.denominator = denominator;
+        this.numerator = numerator.copy();
+        this.denominator = denominator.copy();
         applyFractionRules();
     }
 
     public Fraction(Expression numerator, int denominator) {
-        this.numerator = numerator;
+        this.numerator = numerator.copy();
         this.denominator = new Number(denominator);
         applyFractionRules();
     }
 
     public Fraction(int numerator, Expression denominator) {
         this.numerator = new Number(numerator);
-        this.denominator = denominator;
+        this.denominator = denominator.copy();
         applyFractionRules();
     }
 
@@ -143,17 +143,30 @@ public class Fraction extends ExpressionModifier implements Expression {
 
     @Override
     public Expression optimize() {
+        if (denominator.isOne()) {
+            return numerator;
+        }
+        if (denominator.mul(new Number(-1)).isOne()) {
+            return denominator.mul(new Number(-1));
+        }
         if (this.numerator.equals(this.denominator)) {
             return new Number(1);
         }
         if (this.numerator.mul(new Number(-1)).equals(this.denominator)) {
             return new Number(-1);
         }
+
+        if (denominator instanceof Fraction fraction) {
+            return numerator.mul(fraction.getReciprocal());
+        }
+
         Expression gcd = this.numerator.getGCD(this.denominator);
-        this.numerator = this.numerator.div(gcd);
-        this.denominator = this.denominator.div(gcd);
-        applyFractionRules();
-        return this;
+        return new Fraction(this.numerator.div(gcd), this.denominator.div(gcd));
+    }
+
+    @Override
+    public Expression copy() {
+        return new Fraction(this.numerator.copy(), this.denominator.copy());
     }
 
     public Expression getNumerator() {

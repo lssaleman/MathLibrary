@@ -1,14 +1,12 @@
 package expressions;
 
-import java.util.ArrayList;
-
 public class SquareRoot extends ExpressionModifier implements Expression {
 
     private final Expression value;
     private final Expression preFactor;
 
-    public SquareRoot(Expression v) {
-        this.value = v;
+    public SquareRoot(Expression value) {
+        this.value = value.copy();
         this.preFactor = new Number(1);
     }
 
@@ -18,8 +16,8 @@ public class SquareRoot extends ExpressionModifier implements Expression {
     }
 
     public SquareRoot(Expression value, Expression preFactor) {
-        this.value = value;
-        this.preFactor = preFactor;
+        this.value = value.copy();
+        this.preFactor = preFactor.copy();
     }
 
     public SquareRoot(int value, int preFactor) {
@@ -68,25 +66,29 @@ public class SquareRoot extends ExpressionModifier implements Expression {
 
     @Override
     public Expression add(Expression expression) {
-        ArrayList<Expression> list =  new ArrayList<>();
-        list.add(this);
-        list.add(expression);
-        return new Value(list);
+        if (expression instanceof SquareRoot squareRoot) {
+            if (this.preFactor.equals(squareRoot.preFactor)) {
+                return new SquareRoot(value, this.preFactor.add(squareRoot.preFactor));
+            }
+        }
+        return new SumValue(this, expression);
     }
 
     @Override
     public Expression sub(Expression expression) {
-        ArrayList<Expression> list =  new ArrayList<>();
-        list.add(this);
-        list.add(expression.mul(new Number(-1)));
-        return new Value(list);
+        if (expression instanceof SquareRoot squareRoot) {
+            if (this.preFactor.equals(squareRoot.preFactor)) {
+                return new SquareRoot(value, this.preFactor.sub(squareRoot.preFactor));
+            }
+        }
+        return new SumValue(this, expression);
     }
 
     @Override
     public Expression mul(Expression expression) {
-        if (expression instanceof SquareRoot s) {
-            Expression newValue = s.value.mul(this.value);
-            Expression newPreFactor = s.preFactor.mul(this.preFactor);
+        if (expression instanceof SquareRoot squareRoot) {
+            Expression newValue = squareRoot.value.mul(this.value);
+            Expression newPreFactor = squareRoot.preFactor.mul(this.preFactor);
             return new SquareRoot(newValue, newPreFactor);
         }
         return new SquareRoot(this.value, preFactor.mul(expression));
@@ -100,6 +102,11 @@ public class SquareRoot extends ExpressionModifier implements Expression {
             return new SquareRoot(newValue, newPreFactor);
         }
         return new Fraction(this, expression);
+    }
+
+    @Override
+    public Expression copy() {
+        return new SquareRoot(this.value, this.preFactor);
     }
 
     public Expression getValue() {

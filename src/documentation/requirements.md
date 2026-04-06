@@ -10,6 +10,7 @@
   - [Optimisation for fractions with Numbers](#Optimisation-for-fractions-with-numbers)
   - [Settings Class for Number and Fraction](#settings-class-for-number-and-fraction)
   - [Expression factory](#Expression-factory)
+  - [Design for Value is needed](#design-for-value-is-needed)
 - [Bugfixes](#bugfixes)
   - [Fix order of operations for number](#fix-order-of-operations-for-number)
   - [Fraction class doing optimization without being told so](#fraction-class-doing-optimization-without-being-told-so)
@@ -19,7 +20,7 @@
 This is where I keep my requirements for this project.
 
 ## In Progress
-
+- [Design for Value is needed](#design-for-value-is-needed)
 
 ## Done
 - [Fix order of operations for number](#fix-order-of-operations-for-number)
@@ -95,4 +96,10 @@ It would maybe be nice to set settings for specific Expression
 
 - Values always consist of two expressions
 - Values can be in four different states, plus, minus, multiply or subtract
-- Values can hold Values since they are expressions themselves 
+- Values can hold Values since they are expressions themselves
+
+#### Second Idea
+- There are four types of values, one already exist being called fraction
+- Two can be put together, those two are plus and minus, it just depends on the second expression
+- Multiplication is missing as a Value
+- Two then need to be freshly implemented
