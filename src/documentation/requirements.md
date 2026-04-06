@@ -24,7 +24,7 @@ This is where I keep my requirements for this project.
 ## Done
 - [Fix order of operations for number](#fix-order-of-operations-for-number)
 - [Settings Class for Number and Fraction](#settings-class-for-number-and-fraction)
-- [Optimisation for fractions with Numbers](#Optimisation-for-fractions)
+- [Optimisation for fractions with Numbers](#Optimisation-for-fractions-with-numbers)
 
 ## Requirements list
 
