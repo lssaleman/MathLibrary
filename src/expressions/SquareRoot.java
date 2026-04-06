@@ -6,23 +6,23 @@ public class SquareRoot extends ExpressionModifier implements Expression {
     private final Expression preFactor;
 
     public SquareRoot(Expression value) {
-        this.value = value.copy();
-        this.preFactor = new Number(1);
+        this.value = value.copy().setRenderLeadingPluses(false).setRenderingOnes(true);
+        this.preFactor = new Number(1).setRenderingOnes(false);
     }
 
     public SquareRoot(int value) {
-        this.value = new Number(value);
-        this.preFactor = new Number(1);
+        this.value = new Number(value).setRenderLeadingPluses(false).setRenderingOnes(true);
+        this.preFactor = new Number(1).setRenderingOnes(false);
     }
 
     public SquareRoot(Expression value, Expression preFactor) {
-        this.value = value.copy();
-        this.preFactor = preFactor.copy();
+        this.value = value.copy().setRenderLeadingPluses(false).setRenderingOnes(true);
+        this.preFactor = preFactor.copy().setRenderingOnes(false);
     }
 
     public SquareRoot(int value, int preFactor) {
-        this.value = new Number(value);
-        this.preFactor = new Number(preFactor);
+        this.value = new Number(value).setRenderLeadingPluses(false).setRenderingOnes(true);
+        this.preFactor = new Number(preFactor).setRenderingOnes(false);
     }
 
     @Override
@@ -60,8 +60,7 @@ public class SquareRoot extends ExpressionModifier implements Expression {
 
     @Override
     public String toString() {
-        String base = preFactor.isOne() ? "" : preFactor.isMinusOne() ? "-" : preFactor.toString();
-        return base + "\\sqrt{" + value + "}";
+        return preFactor + "\\sqrt{" + value + "}";
     }
 
     @Override
