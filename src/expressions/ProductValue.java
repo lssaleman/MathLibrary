@@ -5,7 +5,7 @@ public class ProductValue extends ExpressionModifier implements Expression {
     Expression expression2;
 
     public ProductValue(Expression expression1, Expression expression2) {
-        this.expression1 = expression1.copy().setRenderingOnes(true).setRenderLeadingPluses(false);
+        this.expression1 = expression1.copy().setRenderingOnes(true);
         this.expression2 = expression2.copy().setRenderingOnes(true).setRenderLeadingPluses(false);
     }
 
@@ -31,9 +31,6 @@ public class ProductValue extends ExpressionModifier implements Expression {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
-        if (getSettings().isRenderingLeadingPluses() && isPositive()) {
-            string.append("+");
-        }
         string.append(expression1).append(" * ");
         if (!expression2.isPositive()) {
             string.append("(").append(expression2).append(")");
